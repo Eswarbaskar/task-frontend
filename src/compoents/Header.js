@@ -39,12 +39,12 @@ function Header() {
           <form onSubmit={formik.handleSubmit}>
             <h4 className='text-center'>Add your details</h4>
             <div class="mb-3">
-              <label className="form-label">Age</label>
-              <input type="number" className="form-control"
-                id="age"
-                name="age"
+              <label className="form-label">name</label>
+              <input type="text" className="form-control"
+                id="name"
+                name="name"
                 onChange={formik.handleChange}
-                value={formik.values.age} />
+                value={formik.values.name} />
             </div>
             <div class="mb-3">
               <label className="form-label">Age</label>
