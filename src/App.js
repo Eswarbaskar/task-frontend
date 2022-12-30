@@ -21,7 +21,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Signup/>} />
       <Route path="/home" element={<Topbar/>} />
-      <Route path="/header" element={<Header/>} />
+      <Route path="/header/:id" element={<Header/>} />
       <Route path="/login" element={<Login />} />
       </Routes>
       <ToastContainer/>

@@ -11,7 +11,7 @@ function Home() {
                 <div className="col text-center">
                     <h3>WELCOME</h3>
                     <h2>{ }</h2>
-                    <Link to={'/header'} className='link-dark'>Add more details...</Link>
+                    <Link to={'/header/:id'} className='link-dark'>Add more details...</Link>
                 </div>
             </div>
 
