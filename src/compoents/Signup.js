@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 function Signup() {
   let  navi=useNavigate()
@@ -31,15 +31,21 @@ function Signup() {
 
            return errors
         } ,
-        onSubmit: async(values) => {
-           try {
-             await axios.post("",values)
-           
-           } catch (error) {
-            toast.success('Sign-Up successfully')
+        onSubmit: async(values) =>{
+           if(values.password===values.confirmpassword){
+            try {
+                
+               let a = await axios.post("https://project1-2hf9.onrender.com/users/sign-up",values)
+               console.log(a)
+              } catch (error) {
+               // toast.success('Sign-Up successfully')
+              }
+              navi('/login')
+           }else{
+             console.log ('confirmpassword is not match');
            }
-            navi('/login')
         },
+           
       });
     return (
         <div className="container">
@@ -85,6 +91,7 @@ function Signup() {
                             onChange={formik.handleChange}
                             value={formik.values.confirmpassword}
                             style={{border: formik.errors.confirmpassword ? '1px solid red': ''}}/>
+                            
                         </div>
                         <button className='btn btn-dark w-100' type="submit">Submit</button>
                     </form>

@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 function Login() {
     let navi = useNavigate()
@@ -27,14 +27,14 @@ function Login() {
          } ,
         onSubmit: async values => {
             try {
-                await axios.post("",values)
+                await axios.post("https://project1-2hf9.onrender.com/users/login",values)
                 
             } catch (error) {
                 console.log(error);
-                toast.success('Sign-Up successfully')
+                // toast.success('Sign-Up successfully')
             }
-            navi('/home')
             
+            navi('/home')
         },
     });
     return (

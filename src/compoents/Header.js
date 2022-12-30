@@ -1,10 +1,12 @@
 import React from 'react'
+import { useEffect } from 'react';
 
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams} from 'react-router-dom';
 
 function Header() {
+  let param = useParams()
   let navi = useNavigate()
   const formik = useFormik({
     initialValues: {
@@ -14,15 +16,36 @@ function Header() {
       gender: ''
     },
     onSubmit: async values => {
-      await axios.put()
+      await axios.put(`https://project1-2hf9.onrender.com/users/update${param.id}`)
     },
-  });
+     });
+     let getdata = async()=>{
+      try {
+        let user = await axios.get(`https://project1-2hf9.onrender.com/users/${param.id}`)
+        formik.setValues(user)
+      } catch (error) {
+        
+      }
+     }
+
+    useEffect(() => {
+      getdata()
+     }, [])
+  
   return (
     <div className="container ">
       <div className="row justify-content-center m-2">
         <div className="col-lg-8 display p-4">
           <form onSubmit={formik.handleSubmit}>
             <h4 className='text-center'>Add your details</h4>
+            <div class="mb-3">
+              <label className="form-label">Age</label>
+              <input type="number" className="form-control"
+                id="age"
+                name="age"
+                onChange={formik.handleChange}
+                value={formik.values.age} />
+            </div>
             <div class="mb-3">
               <label className="form-label">Age</label>
               <input type="number" className="form-control"
@@ -49,13 +72,18 @@ function Header() {
             </div>
             <div class="mb-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                <input class="form-check-input" type="radio" id="flexRadioDefault1"
+                name="gender"
+                onChange={formik.handleChange}
+                value={formik.values.gender}/>
                   <label class="form-check-label" for="flexRadioDefault1">
                     Male
                   </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
+                <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" checked
+                  onChange={formik.handleChange}
+                  value={formik.values.gender}/>
                   <label class="form-check-label" for="flexRadioDefault2">
                     Female
                   </label>
