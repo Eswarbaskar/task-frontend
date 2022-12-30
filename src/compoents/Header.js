@@ -8,6 +8,7 @@ import { useNavigate,useParams} from 'react-router-dom';
 function Header() {
   let param = useParams()
   let navi = useNavigate()
+  // const[user,userData]=useState()
   const formik = useFormik({
     initialValues: {
       age: '',
@@ -22,7 +23,7 @@ function Header() {
      let getdata = async()=>{
       try {
         let user = await axios.get(`https://project1-2hf9.onrender.com/users/${param.id}`)
-        formik.setValues(user)
+        formik.setValues(user.data)
       } catch (error) {
         
       }
