@@ -27,8 +27,10 @@ function Login() {
          } ,
         onSubmit: async values => {
             try {
-                await axios.post("https://project1-2hf9.onrender.com/users/login",values)
-                
+              let login =  await axios.post("https://project1-2hf9.onrender.com/users/login",values)
+                if(login.data.statusCode === 401){
+                    navi('/login')
+                }
             } catch (error) {
                 console.log(error);
                 // toast.success('Sign-Up successfully')
@@ -43,7 +45,7 @@ function Login() {
                 <div className="col-lg-8 p-4 display">
                     <form onSubmit={formik.handleSubmit}>
                     <h3 className='text-center'>LOG-IN</h3>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label className="form-label">E-mail</label>
                             <input type="email" className="form-control"
                                 id="email"
@@ -52,7 +54,7 @@ function Login() {
                                 value={formik.values.email}
                                 style={{border: formik.errors.email ? '1px solid red': ''}} />
                         </div> 
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label className="form-label">Password</label>
                             <input type="password" className="form-control"
                                 id="password"

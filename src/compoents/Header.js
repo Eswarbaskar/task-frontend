@@ -17,13 +17,14 @@ function Header() {
       gender: ''
     },
     onSubmit: async values => {
-      await axios.put(`https://project1-2hf9.onrender.com/users/update${param.id}`)
+      await axios.put(`https://project1-2hf9.onrender.com/users/update/${param.id}`)
     },
      });
      let getdata = async()=>{
       try {
         let user = await axios.get(`https://project1-2hf9.onrender.com/users/${param.id}`)
         formik.setValues(user.data)
+        console.log(user.data);
       } catch (error) {
         
       }
@@ -39,7 +40,7 @@ function Header() {
         <div className="col-lg-8 display p-4">
           <form onSubmit={formik.handleSubmit}>
             <h4 className='text-center'>Add your details</h4>
-            <div class="mb-3">
+            <div className="mb-3">
               <label className="form-label">name</label>
               <input type="text" className="form-control"
                 id="name"
@@ -47,7 +48,7 @@ function Header() {
                 onChange={formik.handleChange}
                 value={formik.values.name} />
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
               <label className="form-label">Age</label>
               <input type="number" className="form-control"
                 id="age"
@@ -55,7 +56,7 @@ function Header() {
                 onChange={formik.handleChange}
                 value={formik.values.age} />
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
               <label className="form-label">mobile</label>
               <input type="mobile" className="form-control"
                 id="mobile"
@@ -63,7 +64,7 @@ function Header() {
                 onChange={formik.handleChange}
                 value={formik.values.mobile} />
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
               <label className="form-label">dob</label>
               <input type="date" className="form-control"
                 id="dob"
@@ -71,27 +72,27 @@ function Header() {
                 onChange={formik.handleChange}
                 value={formik.values.dob} />
             </div>
-            <div class="mb-3">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="flexRadioDefault1"
+            <div className="mb-3">
+              <div className="form-check">
+                <input className="form-check-input" type="radio" id="flexRadioDefault1"
                 name="gender"
                 onChange={formik.handleChange}
                 value={formik.values.gender}/>
-                  <label class="form-check-label" for="flexRadioDefault1">
+                  <label className="form-check-label" for="flexRadioDefault1">
                     Male
                   </label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" checked
+              <div className="form-check">
+                <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault2" checked
                   onChange={formik.handleChange}
                   value={formik.values.gender}/>
-                  <label class="form-check-label" for="flexRadioDefault2">
+                  <label className="form-check-label" for="flexRadioDefault2">
                     Female
                   </label>
               </div>
               
             </div>
-            <button class="btn btn-dark w-100" onClick={() => { navi('/home') }} type="submit">SUBMIT</button>
+            <button className="btn btn-dark w-100" onClick={() => { navi('/home') }} type="submit">SUBMIT</button>
           </form>
         </div>
       </div>

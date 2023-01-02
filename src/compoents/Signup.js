@@ -32,29 +32,38 @@ function Signup() {
            return errors
         } ,
         onSubmit: async(values) =>{
-           if(values.password===values.confirmpassword){
-            try {
-                
-               let a = await axios.post("https://project1-2hf9.onrender.com/users/sign-up",values)
-               console.log(a)
-              } catch (error) {
-               // toast.success('Sign-Up successfully')
-              }
-              navi('/login')
-           }else{
-             console.log ('confirmpassword is not match');
-           }
+           
+            if(values.password===values.confirmpassword){
+                try {
+                    
+                   let a = await axios.post("https://project1-2hf9.onrender.com/users/sign-up",values)
+                   console.log(a.data)
+                 if(a.data.statusCode===400){
+                    alert(a.data.message)
+                 }
+                  } catch (error) {
+                   // toast.success('Sign-Up successfully')
+                  }
+                  navi('/login')
+               }else{
+                 alert ('confirmpassword is not match');
+               }
+ 
+        //    else{
+        //     alert('user already exist');
+        //     navi('/login');
+        //    }
         },
            
       });
     return (
-        <div className="container">
+        <div className="container ">
             <div className="row justify-content-center m-2">
-                <div className="col-lg-8 p-4 display">
+                <div className="col-lg-8 p-4 display ">
                     <div>
                         <form onSubmit={formik.handleSubmit} className='text-center'>
                         <h3 className='text-center'>SIGN-UP</h3>
-                        <div class="mb-3 form-group">
+                        <div className="mb-3 form-group">
                             <label className="form-label">Name</label>
                             <input type="name" className="form-control" 
                             id="name"
@@ -65,7 +74,7 @@ function Signup() {
                             />
                             
                         </div>
-                        <div class="mb-3 form-group">
+                        <div className="mb-3 form-group">
                             <label className="form-label">E-mail</label>
                             <input type="email" className="form-control" 
                             id="email"
@@ -74,7 +83,7 @@ function Signup() {
                             value={formik.values.email}
                             style={{border: formik.errors.email ? '1px solid red': ''}}/>
                         </div>
-                        <div class="mb-3 form-group ">
+                        <div className="mb-3 form-group ">
                             <label className="form-label">Password</label>
                             <input type="password" className="form-control" 
                             id="password"
@@ -83,7 +92,7 @@ function Signup() {
                             value={formik.values.password}
                             style={{border: formik.errors.password ? '1px solid red': ''}}/>
                         </div>
-                        <div class="mb-3 form-group">
+                        <div className="mb-3 form-group">
                             <label className="form-label">Confirm password</label>
                             <input type="password" className="form-control" 
                             id="confirmpassword"
