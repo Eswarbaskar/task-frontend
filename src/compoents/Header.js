@@ -10,7 +10,7 @@ function Header() {
   let param = useParams()
 
   let navi = useNavigate()
-  
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -22,7 +22,7 @@ function Header() {
     onSubmit: async (values) => {
       try {
         await axios.put(`https://project1-2hf9.onrender.com/users/update/${param.id}`, values)
-        
+
         toast.success('updated successfully')
         navi('/home')
       } catch (error) {
@@ -34,9 +34,9 @@ function Header() {
   let getdata = async () => {
     try {
       let users = await axios.get(`https://project1-2hf9.onrender.com/users/${param.id}`)
-      
+
       formik.setValues(users.data.data)
-      
+
 
     } catch (error) {
       toast.error(error);
@@ -60,7 +60,7 @@ function Header() {
                 name="name"
                 onChange={formik.handleChange}
                 value={formik.values.name}
-                
+
               />
 
             </div>
@@ -71,7 +71,7 @@ function Header() {
                 name="age"
                 onChange={formik.handleChange}
                 value={formik.values.age}
-                 />
+              />
             </div>
             <div className="mb-3 form-group ">
               <label className="form-label">Mobile</label>
@@ -80,7 +80,7 @@ function Header() {
                 name="mobile"
                 onChange={formik.handleChange}
                 value={formik.values.mobile}
-                 />
+              />
             </div>
             <div className="mb-3 form-group">
               <label className="form-label">DOB</label>
@@ -89,36 +89,28 @@ function Header() {
                 name="dob"
                 onChange={formik.handleChange}
                 value={formik.values.dob}
-                 />
+              />
 
             </div>
-            <button className='btn btn-dark w-100' type="submit">Submit</button>
-          </form>
-          {/* <div className="mb-3">
-              <div className="form-check">
-                <input className="form-check-input" type="radio" id="flexRadioDefault1"
+            <div className="mb-3 form-group">
+              <label className="form-label">Gender</label>
+              <input type="text" className="form-control"
+                id="gender"
                 name="gender"
                 onChange={formik.handleChange}
-                value={formik.values.gender}/> */}
-          {/* <label className="form-check-label" for="flexRadioDefault1">
-                    Male
-                  </label>
+                value={formik.values.gender}
+
+              />
               </div>
-              <div className="form-check">
-                <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault2" checked
-                  onChange={formik.handleChange}
-                  value={formik.values.gender}/>
-                  <label className="form-check-label" for="flexRadioDefault2">
-                    Female
-                  </label>
-              </div> */}
+            
+            <button className='btn btn-dark w-100' type="submit">Submit</button>
+          </form>
+          
 
-          {/* </div> */}
-
+          </div>
         </div>
       </div>
-    </div>
-  )
+      )
 }
 
-export default Header
+      export default Header

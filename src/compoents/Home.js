@@ -28,12 +28,12 @@ function Home() {
         <div className="container">
 
             <div className="row">
-                <div className="col text-center">
-                    <h3>WELCOME</h3>
+                <div className="col-sm-12">
+                    <h3 className='text-center'>WELCOME</h3>
                     <table className="table table-dark table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>Age</th>
@@ -48,7 +48,7 @@ function Home() {
                                 user.map((item, id) => {
 
                                     return <tr key={id}>
-                                        <th scope="row">{id + 1}</th>
+                                        <th>{id + 1}</th>
                                         <td>{item.name}</td>
                                         <td>{item.email}</td>
                                         <td>{item.age}</td>
