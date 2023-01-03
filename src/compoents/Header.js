@@ -3,82 +3,104 @@ import { useEffect } from 'react';
 
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useNavigate,useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Header() {
   let param = useParams()
+
   let navi = useNavigate()
-  // const[user,userData]=useState()
+  
   const formik = useFormik({
     initialValues: {
+      name: '',
       age: '',
       mobile: '',
       dob: '',
       gender: ''
     },
-    onSubmit: async values => {
-      await axios.put(`https://project1-2hf9.onrender.com/users/update/${param.id}`)
-    },
-     });
-     let getdata = async()=>{
+    onSubmit: async (values) => {
       try {
-        let user = await axios.get(`https://project1-2hf9.onrender.com/users/${param.id}`)
-        formik.setValues(user.data)
-        console.log(user.data);
-      } catch (error) {
+        await axios.put(`https://project1-2hf9.onrender.com/users/update/${param.id}`, values)
         
+        toast.success('updated successfully')
+        navi('/home')
+      } catch (error) {
+        toast.error(error)
       }
-     }
 
-    useEffect(() => {
-      getdata()
-     }, [])
-  
+    },
+  });
+  let getdata = async () => {
+    try {
+      let users = await axios.get(`https://project1-2hf9.onrender.com/users/${param.id}`)
+      
+      formik.setValues(users.data.data)
+      
+
+    } catch (error) {
+      toast.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getdata()
+  }, [])
+
   return (
     <div className="container ">
       <div className="row justify-content-center m-2">
         <div className="col-lg-8 display p-4">
-          <form onSubmit={formik.handleSubmit}>
-            <h4 className='text-center'>Add your details</h4>
-            <div className="mb-3">
-              <label className="form-label">name</label>
-              <input type="text" className="form-control"
+          <form onSubmit={formik.handleSubmit} className='text-center'>
+            <h3 className='text-center'>Add Details</h3>
+            <div className="mb-3 form-group">
+              <label className="form-label">Name</label>
+              <input type="name" className="form-control"
                 id="name"
                 name="name"
                 onChange={formik.handleChange}
-                value={formik.values.name} />
+                value={formik.values.name}
+                
+              />
+
             </div>
-            <div className="mb-3">
+            <div className="mb-3 form-group">
               <label className="form-label">Age</label>
               <input type="number" className="form-control"
                 id="age"
                 name="age"
                 onChange={formik.handleChange}
-                value={formik.values.age} />
+                value={formik.values.age}
+                 />
             </div>
-            <div className="mb-3">
-              <label className="form-label">mobile</label>
-              <input type="mobile" className="form-control"
+            <div className="mb-3 form-group ">
+              <label className="form-label">Mobile</label>
+              <input type="text" className="form-control"
                 id="mobile"
                 name="mobile"
                 onChange={formik.handleChange}
-                value={formik.values.mobile} />
+                value={formik.values.mobile}
+                 />
             </div>
-            <div className="mb-3">
-              <label className="form-label">dob</label>
+            <div className="mb-3 form-group">
+              <label className="form-label">DOB</label>
               <input type="date" className="form-control"
                 id="dob"
                 name="dob"
                 onChange={formik.handleChange}
-                value={formik.values.dob} />
+                value={formik.values.dob}
+                 />
+
             </div>
-            <div className="mb-3">
+            <button className='btn btn-dark w-100' type="submit">Submit</button>
+          </form>
+          {/* <div className="mb-3">
               <div className="form-check">
                 <input className="form-check-input" type="radio" id="flexRadioDefault1"
                 name="gender"
                 onChange={formik.handleChange}
-                value={formik.values.gender}/>
-                  <label className="form-check-label" for="flexRadioDefault1">
+                value={formik.values.gender}/> */}
+          {/* <label className="form-check-label" for="flexRadioDefault1">
                     Male
                   </label>
               </div>
@@ -89,11 +111,10 @@ function Header() {
                   <label className="form-check-label" for="flexRadioDefault2">
                     Female
                   </label>
-              </div>
-              
-            </div>
-            <button className="btn btn-dark w-100" onClick={() => { navi('/home') }} type="submit">SUBMIT</button>
-          </form>
+              </div> */}
+
+          {/* </div> */}
+
         </div>
       </div>
     </div>
