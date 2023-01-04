@@ -56,7 +56,8 @@ function Home() {
                                         <td>{item.dob}</td>
                                         <td>{item.gender}</td>
                                         <td>
-                                            <Link to={`/header/${item._id}`} className='btn btn-dark'>Add more details...</Link>
+                                            <Link to={`/header/${item._id}`} className='btn btn-primary m-2'>Update</Link>
+                                            <Link to={`/delete/${item._id}`} className='btn btn-danger'>Delete</Link>
                                         </td>
 
                                     </tr>

@@ -11,8 +11,10 @@ import Login from './compoents/Login';
 import Signup from './compoents/Signup';
 import Topbar from './compoents/Topbar';
 import Header from './compoents/Header';
+import Delete from './compoents/Delete';
 
-// import Header from './compoents/Header';
+
+
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
       <Route path="/home" element={<Topbar/>} />
       <Route path="/header/:id" element={<Header/>} />
       <Route path="/login" element={<Login />} />
+      <Route path="/delete/:id" element={<Delete/>} />
+      
       </Routes>
       <ToastContainer/>
       </BrowserRouter>
