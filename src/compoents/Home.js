@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 
+
 function Home() {
 
     const [user, getUser] = useState([])
@@ -45,23 +46,23 @@ function Home() {
                         </thead>
                         <tbody>
                             {
-                                user.map((item, id) => {
+                             user.map((item, id) => {
 
-                                    return <tr key={id}>
-                                        <th>{id + 1}</th>
-                                        <td>{item.name}</td>
-                                        <td>{item.email}</td>
-                                        <td>{item.age}</td>
-                                        <td>{item.mobile}</td>
-                                        <td>{item.dob}</td>
-                                        <td>{item.gender}</td>
-                                        <td>
-                                            <Link to={`/header/${item._id}`} className='btn btn-primary m-2'>Update</Link>
-                                            <Link to={`/delete/${item._id}`} className='btn btn-danger'>Delete</Link>
-                                        </td>
+                                return <tr key={id}>
+                                    <th>{id + 1}</th>
+                                    <td>{item.name}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.age}</td>
+                                    <td>{item.mobile}</td>
+                                    <td>{item.dob}</td>
+                                    <td>{item.gender}</td>
+                                    <td>
+                                        <Link to={`/header/${item._id}`} className='btn btn-primary m-1'>Update</Link>
+                                        <Link to={`/delete/${item._id}`} className='btn btn-danger'>Delete</Link>
+                                    </td>
 
-                                    </tr>
-                                })
+                                </tr>
+                            }) 
                             }
 
                         </tbody>

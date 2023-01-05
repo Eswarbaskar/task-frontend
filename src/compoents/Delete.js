@@ -9,10 +9,10 @@ function Delete() {
     useEffect(() => {
       
         deleteUser()
-      return () => {
+
         navi('/home')
-          
-      }
+         userData() 
+
     }, [])
     
     let deleteUser = async() => {
@@ -25,6 +25,16 @@ function Delete() {
          }
          
     }
+    let userData = async () => {
+      try {
+           await axios.get('https://project1-2hf9.onrender.com/users')
+
+
+      } catch (error) {
+          toast.error(error);
+      }
+  }
+
     
   return (
     <>

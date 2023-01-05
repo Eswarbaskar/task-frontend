@@ -5,6 +5,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 
+
+
 function Signup() {
     let navi = useNavigate()
     const formik = useFormik({
@@ -35,6 +37,7 @@ function Signup() {
         onSubmit: async (values) => {
 
             if (values.password === values.confirmpassword) {
+
                 try {
 
                     let a = await axios.post("https://project1-2hf9.onrender.com/users/sign-up", values)
@@ -46,6 +49,7 @@ function Signup() {
                     toast.error(error)
                 }
                 toast.success('user Added successfully')
+
                 navi('/login')
             } else {
                 toast.error('confirmpassword is not match');
