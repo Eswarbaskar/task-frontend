@@ -14,16 +14,13 @@ import Header from './compoents/Header';
 import Delete from './compoents/Delete';
 
 
-
-
-
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Signup />} />
-          <Route path="/home" element={<Topbar />} />
+          <Route path="/home" element={<Topbar/>} />
           <Route path="/header/:id" element={<Header />} />
           <Route path="/login" element={<Login />} />
           <Route path="/delete/:id" element={<Delete />} />

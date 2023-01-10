@@ -44,13 +44,15 @@ function Signup() {
 
                     if (a.data.statusCode === 400) {
                         toast.warning(a.data.message)
+                        navi('/login')
+                    }else{
+                        toast.success('user Added successfully')
+                        navi('/login')
                     }
                 } catch (error) {
                     toast.error(error)
                 }
-                toast.success('user Added successfully')
-
-                navi('/login')
+                
             } else {
                 toast.error('confirmpassword is not match');
             }

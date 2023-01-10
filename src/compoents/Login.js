@@ -30,12 +30,15 @@ function Login() {
             try {
                 let login = await axios.post("https://project1-2hf9.onrender.com/users/login", values)
               
-                if (login.data.statusCode === 401) {
-                    toast.error(login.data.message);
-                    navi('/login')
-                } else {
+                if (login.data.statusCode === 200) {
+                    window.sessionStorage.setItem('token',login.data.token)
+                    
                     toast.success("login successfully")
                     navi('/home')
+                } else {
+                   
+                    toast.error(login.data.message);
+                    navi('/login')
                 }
                
             } catch (error) {
